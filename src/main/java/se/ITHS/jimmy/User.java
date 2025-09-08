@@ -6,6 +6,12 @@ public class User {
     private String password;
     private int age;
 
+    public User(String username, String password, int age) {
+        this.username = username;
+        this.password = password;
+        this.age = age;
+    }
+
     // get & set for username
     public String getUserName() {
         return username;
