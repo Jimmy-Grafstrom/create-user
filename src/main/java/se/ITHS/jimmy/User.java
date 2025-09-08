@@ -12,12 +12,24 @@ public class User {
         this.age = age;
     }
 
+    // Override equals för att kontrollera hur UserRegServ ska jämföra anv-namn
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        User otherUser = (User) obj;
+        return username.equals(otherUser.username);
+    }
+
     // get & set for username
-    public String getUserName() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUserName(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
