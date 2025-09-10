@@ -1,24 +1,42 @@
 package se.ITHS.jimmy;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
+
 public class Main {
     public static void main(String[] args) {
-        User user1 = new User("Jimmy", "Secu123@", 31);
-        User user2 = new User("Svante", "Secure-password", 31);
-        User user3 = new User("Jimmy", "another password", 31);
-        UserRegistrationService newUser = new UserRegistrationService();
+
+        Scanner sc = new Scanner(System.in);
+        UserRegistrationService userRegServ = new UserRegistrationService();
+
+        boolean running = true;
 
 
-        newUser.addUser(user1);
-        newUser.addUser(user2);
-        newUser.addUser(user3);
-        System.out.println(user3.getUsername() + user3.getPassword() + user3.getAge());
+        System.out.println("Welcome, please choose an option.");
+        while (running) {
+            System.out.println("--------------------------------");
+            System.out.println("Write 'n' to create new user.");
+            System.out.println("Write 'q' to quit.");
+            System.out.println("Write 'c' to check existing users.");
+            System.out.println("--------------------------------");
+            System.out.print("Write here: ");
+            String createUser = sc.nextLine();
 
-        System.out.println(newUser.passwordHasRequiredLength(user1.getPassword()));
-        System.out.println(newUser.passwordHasDigit(user1.getPassword()));
-        System.out.println(newUser.passwordHasUppercase(user1.getPassword()));
-        System.out.println(newUser.passwordHasSpecialChar(user1.getPassword()));
-
+            switch (createUser) {
+                case "n":
+                    userRegServ.createNewUser(sc);
+                    break;
+                case "q":
+                    System.out.println("Quiting program...");
+                    running = false;
+                    break;
+                case "c":
+                    userRegServ.getSavedUsers();
+                    break;
+                default:
+                    System.out.println("Wrong input.");
+            }
+        }
+        sc.close();
     }
 }
